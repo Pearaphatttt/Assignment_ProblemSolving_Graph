@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--divinectorweb.com-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CHECK-IN</title>
+
+    <!-- All CSS -->
+    <link href="static/bootstrap.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+    />
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="static/style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"
+          ><span class="text-primary">CHECK-</span>IN</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#carouselExampleIndicators">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#graph">Graph</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#box">Travel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#team">Team</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- slideshow section starts -->
+    <div
+      id="carouselExampleIndicators"
+      class="carousel slide mb-5"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="static/img/travel/2.jpg" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="static/img/travel/7.jpg" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="static/img/travel/9.jpg" class="d-block w-100" alt="..." />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <!-- slideshow section Ends -->
+    <!-- graph section Starts -->
+    <section class="graph section-padding" id="graph">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-header text-center pb-4">
+              <h2>Graph</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-12 col-lg-12">
+            <div class="card text-white text-center pb-2">
+              <div class="card-body">
+                <div id="graph">
+                  <img
+                    src="data:image/png;base64,{{ graph_image }}"
+                    alt="Graph"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-12 col-lg-12 pt-2">
+            <div class="card text-dark text-center">
+              <div class="card-body">
+                <!-- Form สำหรับค้นหาเส้นทางที่สั้นที่สุด -->
+                <p class="fs-5 fw-bold">Search Node</p>
+                <form
+                  method="POST"
+                  class="row g-3 justify-content-center"
+                  action="/find_shortest_path"
+                >
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="start" class="form-label">Start Node</label>
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="start"
+                          name="start"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="end" class="form-label">End Node</label>
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="end"
+                          name="end"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                      ค้นหาระยะทาง
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-12 col-lg-12 pt-2">
+            <div class="card text-dark text-center">
+              <div class="card-body">
+                <!-- Form สำหรับเพิ่มโหนดใหม่ -->
+                <p class="fs-5 fw-bold pt-3">Add Node</p>
+                <form
+                  method="POST"
+                  class="row g-3 justify-content-center"
+                  action="/insert_node"
+                >
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="node_name" class="form-label"
+                          >Node Name</label
+                        >
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="node_name"
+                          name="node_name"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                      Add Node
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-12 col-lg-12 pt-2">
+            <div class="card text-dark text-center">
+              <div class="card-body">
+                <!-- Form สำหรับเพิ่มเส้นเชื่อมใหม่ -->
+                <p class="fs-5 fw-bold pt-3">Add Edge</p>
+                <form
+                  method="POST"
+                  class="row g-3 justify-content-center"
+                  action="/insert_edge"
+                >
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="from_node" class="form-label"
+                          >From Node</label
+                        >
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="from_node"
+                          name="from_node"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="to_node" class="form-label">To Node</label>
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="to_node"
+                          name="to_node"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="weight" class="form-label">Weight</label>
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="weight"
+                          name="weight"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                      Add Node
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-12 col-lg-12 pt-2">
+            <div class="card text-dark text-center">
+              <div class="card-body">
+                <!-- Form สำหรับ edit -->
+                <p class="fs-5 fw-bold pt-3">Edit Node</p>
+                <form
+                  method="POST"
+                  class="row g-3 justify-content-center"
+                  action="/edit"
+                >
+                  <input type="hidden" name="action" value="change_node_name" />
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="old_name" class="form-label"
+                          >Old Node Name</label
+                        >
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="old_name"
+                          name="old_name"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="new_name" class="form-label"
+                          >New Node Name</label
+                        >
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="new_name"
+                          name="new_name"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                      Change Node Name
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-12 col-lg-12 pt-2">
+            <div class="card text-dark text-center">
+              <div class="card-body">
+                <!-- Form สำหรับ edit Distance -->
+                <p class="fs-5 fw-bold pt-3">Edit Node Distance</p>
+                <form
+                  method="POST"
+                  class="row g-3 justify-content-center"
+                  action="/edit"
+                >
+                  <input
+                    type="hidden"
+                    name="action"
+                    value="change_edge_distance"
+                  />
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="node1" class="form-label">Node 1</label>
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="node1"
+                          name="node1"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="node2" class="form-label">Node 2</label>
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="node2"
+                          name="node2"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="new_distance" class="form-label"
+                          >New Distance</label
+                        >
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="new_distance"
+                          name="new_distance"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                      Change Edge Distance
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-12 col-lg-12 pt-2">
+            <div class="card text-dark text-center">
+              <div class="card-body">
+                <!-- Form สำหรับลบโหนด -->
+                <p class="fs-5 fw-bold pt-3">Delete Node</p>
+                <form
+                  method="POST"
+                  class="row g-3 justify-content-center"
+                  action="/delete_node"
+                >
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="node_to_delete" class="form-label"
+                          >Node to Delete</label
+                        >
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="node_to_delete"
+                          name="node_to_delete"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                      Delete Node
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-12 col-lg-12 pt-2">
+            <div class="card text-dark text-center">
+              <div class="card-body">
+                <!-- Form สำหรับลบโหนด -->
+                <p class="fs-5 fw-bold pt-3">Delete Edge</p>
+                <form
+                  method="POST"
+                  class="row g-3 justify-content-center"
+                  action="/delete_edge"
+                >
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="from_node" class="form-label"
+                          >From Node:</label
+                        >
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="from_node"
+                          name="from_node"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <label for="to_node" class="form-label">To node:</label>
+                      </div>
+                      <div class="col-auto">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="to_node"
+                          name="to_node"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                      Delete Edge
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- graph section Ends -->
+    <!-- box strats -->
+    <section id="box" class="box section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-header text-center pb-3">
+              <h2>TRAVEL</h2>
+              <p>สถานทีท่องเที่ยวยอดนิยม</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <!-- box item 1-->
+            <div class="box-item">
+              <a class="box-link" data-bs-toggle="modal" href="#boxModal1">
+                <div class="box-hover">
+                  <div class="box-hover-content">
+                    <i class="fas fa-plus fa-3x"></i>
+                  </div>
+                </div>
+                <img class="img-fluid" src="static/img/1.jpg" alt="..." />
+              </a>
+              <div class="box-caption">
+                <div class="box-caption-heading">เขื่อนขุนด่านปราการชล</div>
+                <div class="box-caption-subheading text-muted">
+                  บ้านท่าด่าน ต.หินตั้ง อ.เมือง จ.นครนายก
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <!-- box item 2-->
+            <div class="box-item">
+              <a class="box-link" data-bs-toggle="modal" href="#boxModal2">
+                <div class="box-hover">
+                  <div class="box-hover-content">
+                    <i class="fas fa-plus fa-3x"></i>
+                  </div>
+                </div>
+                <img class="img-fluid" src="static/img/2.jpg" alt="..." />
+              </a>
+              <div class="box-caption">
+                <div class="box-caption-heading">น้ำตกเหวนรก</div>
+                <div class="box-caption-subheading text-muted">
+                  ต.นาหินลาด อ.ปากพลี จ.นครนายก
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <!-- box item 3-->
+            <div class="box-item">
+              <a class="box-link" data-bs-toggle="modal" href="#boxModal3">
+                <div class="box-hover">
+                  <div class="box-hover-content">
+                    <i class="fas fa-plus fa-3x"></i>
+                  </div>
+                </div>
+                <img class="img-fluid" src="static/img/3.jpg" alt="..." />
+              </a>
+              <div class="box-caption">
+                <div class="box-caption-heading">อุโมงค์ป่าไผ่</div>
+                <div class="box-caption-subheading text-muted">
+                  ต.บ้านพริก อ.บ้านนา จ.นครนายก
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <!-- box item 4-->
+            <div class="box-item">
+              <a class="box-link" data-bs-toggle="modal" href="#boxModal4">
+                <div class="box-hover">
+                  <div class="box-hover-content">
+                    <i class="fas fa-plus fa-3x"></i>
+                  </div>
+                </div>
+                <img class="img-fluid" src="static/img/4.jpg" alt="..." />
+              </a>
+              <div class="box-caption">
+                <div class="box-caption-heading">น้ำตกสาริกา</div>
+                <div class="box-caption-subheading text-muted">
+                  ต.สาริกา อ.เมือง จ.นครนายก
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <!-- box item 5-->
+            <div class="box-item">
+              <a class="box-link" data-bs-toggle="modal" href="#boxModal5">
+                <div class="box-hover">
+                  <div class="box-hover-content">
+                    <i class="fas fa-plus fa-3x"></i>
+                  </div>
+                </div>
+                <img class="img-fluid" src="static/img/5.jpg" alt="..." />
+              </a>
+              <div class="box-caption">
+                <div class="box-caption-heading">สวนลุงเล็ก</div>
+                <div class="box-caption-subheading text-muted">
+                  ต.หินตั้ง อ.เมือง จ.นครนายก
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <!-- box item 6-->
+            <div class="box-item">
+              <a class="box-link" data-bs-toggle="modal" href="#boxModal6">
+                <div class="box-hover">
+                  <div class="box-hover-content">
+                    <i class="fas fa-plus fa-3x"></i>
+                  </div>
+                </div>
+                <img class="img-fluid" src="static/img/6.jpg" alt="..." />
+              </a>
+              <div class="box-caption">
+                <div class="box-caption-heading">น้ำตกนางรอง</div>
+                <div class="box-caption-subheading text-muted">
+                  ต.หินตั้ง อ.นครนายก จ.นครนายก
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <!-- box item 7-->
+            <div class="box-item">
+              <a class="box-link" data-bs-toggle="modal" href="#boxModal7">
+                <div class="box-hover">
+                  <div class="box-hover-content">
+                    <i class="fas fa-plus fa-3x"></i>
+                  </div>
+                </div>
+                <img class="img-fluid" src="static/img/7.jpg" alt="..." />
+              </a>
+              <div class="box-caption">
+                <div class="box-caption-heading">น้ำตกวังตะไคร้</div>
+                <div class="box-caption-subheading text-muted">
+                  ต.สาริกา อ.เมือง จ.นครนายก
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <!-- box item 8-->
+            <div class="box-item">
+              <a class="box-link" data-bs-toggle="modal" href="#boxModal8">
+                <div class="box-hover">
+                  <div class="box-hover-content">
+                    <i class="fas fa-plus fa-3x"></i>
+                  </div>
+                </div>
+                <img class="img-fluid" src="static/img/8.jpg" alt="..." />
+              </a>
+              <div class="box-caption">
+                <div class="box-caption-heading">วัดมณีวงศ์</div>
+                <div class="box-caption-subheading text-muted">
+                  ต.ดงละคร อ.เมืองนครนายก จ.นครนายก
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <!-- box item 9-->
+            <div class="box-item">
+              <a class="box-link" data-bs-toggle="modal" href="#boxModal9">
+                <div class="box-hover">
+                  <div class="box-hover-content">
+                    <i class="fas fa-plus fa-3x"></i>
+                  </div>
+                </div>
+                <img class="img-fluid" src="static/img/9.jpg" alt="..." />
+              </a>
+              <div class="box-caption">
+                <div class="box-caption-heading">น้ำตกคลองมะเดื่อ</div>
+                <div class="box-caption-subheading text-muted">
+                  ต.สาริกา อ.เมืองนครนายก จ.นครนายก
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- box ends -->
+    <!-- team starts -->
+    <section class="team section-padding" id="team">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-header text-center pb-5">
+              <h2>Our Team</h2>
+              <p>สมาชิกในการพัฒนา <br />INET</p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-center">
+              <div class="card-body">
+                <img
+                  src="static/img/team-1.jpg"
+                  alt=""
+                  class="img-fluid rounded-circle"
+                />
+                <h3 class="card-title py-2">Teeranai Kongpom</h3>
+                <p class="card-text">6606022420087 <br />INET</p>
+
+                <p class="socials">
+                  <i class="bi bi-twitter text-dark mx-1"></i>
+                  <i class="bi bi-facebook text-dark mx-1"></i>
+                  <i class="bi bi-linkedin text-dark mx-1"></i>
+                  <i class="bi bi-instagram text-dark mx-1"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-center">
+              <div class="card-body">
+                <img
+                  src="static/img/team-2.jpg"
+                  alt=""
+                  class="img-fluid rounded-circle"
+                />
+                <h3 class="card-title py-2">Tharita Khumsap</h3>
+                <p class="card-text">6606022410014 <br />INET</p>
+                <p class="socials">
+                  <i class="bi bi-twitter text-dark mx-1"></i>
+                  <i class="bi bi-facebook text-dark mx-1"></i>
+                  <i class="bi bi-linkedin text-dark mx-1"></i>
+                  <i class="bi bi-instagram text-dark mx-1"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card text-center">
+              <div class="card-body">
+                <img
+                  src="static/img/team-3.jpg"
+                  alt=""
+                  class="img-fluid rounded-circle"
+                />
+                <h3 class="card-title py-2">Peeraphat Wiwatkasikit</h3>
+                <p class="card-text">6606022410022 <br />INET</p>
+                <p class="socials">
+                  <i class="bi bi-twitter text-dark mx-1"></i>
+                  <i class="bi bi-facebook text-dark mx-1"></i>
+                  <i class="bi bi-linkedin text-dark mx-1"></i>
+                  <i class="bi bi-instagram text-dark mx-1"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- team ends -->
+    <!-- Contact starts -->
+    <section id="contact" class="contact section-padding">
+      <div class="container mt-5 mb-5">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-header text-center pb-0">
+              <h2>Contact Us</h2>
+              <p>ติดต่อสอบถามข้อมูลเพิ่มเติม <br />KMUTNB INET</p>
+            </div>
+          </div>
+        </div>
+        <div class="row m-0">
+          <div class="col-md-12 p-0 pt-4 pb-4">
+            <form action="#" class="p-4 m-auto">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="mb-3">
+                    <input
+                      class="form-control"
+                      placeholder="Full Name"
+                      required=""
+                      type="text"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3">
+                    <input
+                      class="form-control"
+                      placeholder="Email"
+                      required=""
+                      type="email"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3">
+                    <textarea
+                      class="form-control"
+                      placeholder="Message"
+                      required=""
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary btn-lg btn-block mt-3"
+                  type="button"
+                >
+                  Send Now
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- contact ends -->
+    <!-- footer starts -->
+    <footer class="bg-dark pt-3 pb-1 text-center">
+      <div class="container">
+        <p class="text-white">All Right Reserved By @CHECK-IN INET</p>
+      </div>
+    </footer>
+    <!-- footer ends -->
+    <!-- box Modals-->
+    <!-- box item 1 modal popup-->
+    <div
+      class="box-modal modal fade"
+      id="boxModal1"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-bs-dismiss="modal">
+            <img src="static/img/close-icon.svg" alt="Close modal" />
+          </div>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="modal-body">
+                  <!-- Project details-->
+                  <h2 class="text-uppercase">เขื่อนขุนด่านปราการชล</h2>
+                  <p class="item-intro text-muted">
+                    บ้านท่าด่าน หมู่ 2 ต.หินตั้ง อ.เมือง จ.นครนายก
+                  </p>
+                  <img
+                    class="img-fluid d-block mx-auto"
+                    src="static/img/travel/1.jpg"
+                    alt="..."
+                  />
+                  <p>
+                    เขื่อนขุนด่านปราการชล
+                    สร้างขึ้นตามแนวพระราชดำริของพระบาทสมเด็จพระบรมชนกาธิเบศร
+                    มหาภูมิพลอดุลยเดชมหาราชเพื่อเก็บกักน้ำในช่วงหน้าฝนไว้ในหน้าแล้ง
+                    และควบคุมไม่ให้เกิดน้ำท่วมบ้านเรือนราษฎร
+                    ไร่นาและพื้นที่การเกษตรในหน้าฝน
+                  </p>
+
+                  <button
+                    class="btn btn-primary btn-xl text-uppercase"
+                    data-bs-dismiss="modal"
+                    type="button"
+                  >
+                    <i class="fas fa-xmark me-1"></i>
+                    ปิดหน้าต่าง
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- box item 2 modal popup-->
+    <div
+      class="box-modal modal fade"
+      id="boxModal2"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-bs-dismiss="modal">
+            <img src="static/img/close-icon.svg" alt="Close modal" />
+          </div>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="modal-body">
+                  <!-- Project details-->
+                  <h2 class="text-uppercase">น้ำตกเหวนรก</h2>
+                  <p class="item-intro text-muted">
+                    อุทยานแห่งชาติเขาใหญ่ ต.หินลาด อ.ปากพลี จ.นครนายก
+                  </p>
+                  <img
+                    class="img-fluid d-block mx-auto"
+                    src="static/img/travel/2.jpg"
+                    alt="..."
+                  />
+                  <p>
+                    น้ำตกเหวนรก เป็นน้ำตกขนาดใหญ่ 3 ชั้น ตั้งอยู่ใน
+                    อุทยานแห่งชาติเขาใหญ่ ฝั่งจังหวัดนครนายก
+                    จากความสูงในแต่ละชั้นที่ไม่ต่ำกว่า 50 เมตร น้ำตกเหวนรก
+                    ต้องไปฤดูฝน
+                    เพราะเราจะได้เห็นทัศนียภาพของมวลน้ำมหาศาลที่ไหลลงสู่แอ่งน้ำด้านล่างได้อย่างเต็มที่
+                    ยิ่งถ้าไปในช่วงเวลา 10 โมงเช้า จะเกิดเป็นรุ้งกินน้ำ
+                    สวยงามมากๆ อุทยานแห่งชาติเขาใหญ่ ตำบลนาหินลาด อำเภอปากพลี
+                    จังหวัดนครนายก
+                  </p>
+                  <button
+                    class="btn btn-primary btn-xl text-uppercase"
+                    data-bs-dismiss="modal"
+                    type="button"
+                  >
+                    <i class="fas fa-xmark me-1"></i>
+                    ปิดหน้าต่าง
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- box item 3 modal popup-->
+    <div
+      class="box-modal modal fade"
+      id="boxModal3"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-bs-dismiss="modal">
+            <img src="static/img/close-icon.svg" alt="Close modal" />
+          </div>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="modal-body">
+                  <!-- Project details-->
+                  <h2 class="text-uppercase">อุโมงค์ป่าไผ่</h2>
+                  <p class="item-intro text-muted">
+                    ต.บ้านพริก อ.บ้านนา จ.นครนายก
+                  </p>
+                  <img
+                    class="img-fluid d-block mx-auto"
+                    src="static/img/travel/3.jpg"
+                    alt="..."
+                  />
+                  <p>
+                    อุโมงค์ป่าไผ่ วัดจุฬาภรณ์นาราม
+                    เป็นซุ้มต้นไผ่ภายในวัดจุฬาภรณ์วนารามที่มีบรรยากาศร่มรื่นและคล้ายกับป่าไผ่อาราชิยาม่าที่ญี่ปุ่น
+                    นักท่องเที่ยวนิยมมาเดินเล่นและถ่ายภาพสวยๆ
+                    ของซุ้มต้นไผ่อันเขียวขจีที่โค้งตัวปกคลุมเหนือทางเดินความยาวหลายร้อยเมตร
+                    อุโมงค์ป่าไผ่แห่งนี้จึงเป็นจุดเช็คอินอีกแห่งหนึ่งของนครนายกที่ไม่ควรพลาด
+                  </p>
+                  <button
+                    class="btn btn-primary btn-xl text-uppercase"
+                    data-bs-dismiss="modal"
+                    type="button"
+                  >
+                    <i class="fas fa-xmark me-1"></i>
+                    ปิดหน้าต่าง
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- box item 4 modal popup-->
+    <div
+      class="box-modal modal fade"
+      id="boxModal4"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-bs-dismiss="modal">
+            <img src="static/img/close-icon.svg" alt="Close modal" />
+          </div>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="modal-body">
+                  <!-- Project details-->
+                  <h2 class="text-uppercase">น้ำตกสาริกา</h2>
+                  <p class="item-intro text-muted">
+                    ต.สาริกา อ.เมือง จ.นครนายก
+                  </p>
+                  <img
+                    class="img-fluid d-block mx-auto"
+                    src="static/img/travel/4.jpg"
+                    alt="..."
+                  />
+                  <p>
+                    น้ำตกสาริกา เป็นน้ำตกขนาดใหญ่สายน้ำไหลตกจากหน้าผาเป็นทอดๆ
+                    ถึง 9 ชั้น ผาที่สูงที่สุดประมาณ 100 เมตร
+                    แต่ละชั้นมีอ่างรับน้ำขนาดย่อม เหมาะแก่การลงเล่นน้ำ
+                    บริเวณน้ำตกชั้นล่างมีแอ่งน้ำให้เล่นน้ำได้
+                    และมีทางเดินต่อไปตามธารน้ำที่ไหลตกลงมาเป็นชั้นๆ
+                    จนไปถึงแอ่งน้ำกว้างและโขดหินก้อนใหญ่
+                  </p>
+                  <button
+                    class="btn btn-primary btn-xl text-uppercase"
+                    data-bs-dismiss="modal"
+                    type="button"
+                  >
+                    <i class="fas fa-xmark me-1"></i>
+                    ปิดหน้าต่าง
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- box item 5 modal popup-->
+    <div
+      class="box-modal modal fade"
+      id="boxModal5"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-bs-dismiss="modal">
+            <img src="static/img/close-icon.svg" alt="Close modal" />
+          </div>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="modal-body">
+                  <!-- Project details-->
+                  <h2 class="text-uppercase">สวนลุงเล็ก</h2>
+                  <p class="item-intro text-muted">
+                    54/3 ต.หินตั้ง อ.เมือง จ.นครนายก
+                  </p>
+                  <img
+                    class="img-fluid d-block mx-auto"
+                    src="static/img/travel/5.jpg"
+                    alt="..."
+                  />
+                  <p>
+                    สวนลุงเล็ก เป็นลานกางเต็นท์
+                    ที่เปิดให้นักท่องเที่ยวเข้ามานั่งพักผ่อนแบบวันเดย์ทริปด้วย
+                    โดยเฉพาะในช่วงศุกร์เสาร์อาทิตย์นั้น
+                    น้ำจะเยอะเป็นพิเศษเพราะถูกปล่อยมาจากเขื่อนขุนด่านปราการชล
+                  </p>
+                  <button
+                    class="btn btn-primary btn-xl text-uppercase"
+                    data-bs-dismiss="modal"
+                    type="button"
+                  >
+                    <i class="fas fa-xmark me-1"></i>
+                    ปิดหน้าต่าง
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- box item 6 modal popup-->
+    <div
+      class="box-modal modal fade"
+      id="boxModal6"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-bs-dismiss="modal">
+            <img src="static/img/close-icon.svg" alt="Close modal" />
+          </div>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="modal-body">
+                  <!-- Project details-->
+                  <h2 class="text-uppercase">น้ำตกนางรอง</h2>
+                  <p class="item-intro text-muted">
+                    อุทยานแห่งชาติเขาใหญ่ ต.หินตั้ง อ.เมืองนครนายก จ.นครนายก
+                  </p>
+                  <img
+                    class="img-fluid d-block mx-auto"
+                    src="static/img/travel/6.jpg"
+                    alt="..."
+                  />
+                  <p>
+                    น้ำตกนางรอง ห่างจากตัวเมืองประมาณ 20 กิโลเมตร
+                    ตามทางหลวงหมายเลข 3049 อยู่ในเขตอุทยานแห่งชาติเขาใหญ่
+                    เป็นน้ำตกขนาดกลางที่ไหลลดหลั่นลงมาเป็นชั้นๆ
+                    มีความสวยงามเป็นธรรมชาติ
+                    ในช่วงฤดูฝนกระแสน้ำจากน้ำตกนางรองจะไหลเชี่ยวมาก
+                    ควรระมัดระวังในการลงเล่นน้ำ การจัดบริเวณภายในเป็นระเบียบ
+                    สะอาดตา มีห้องอาบน้ำและห้องสุขาให้บริการ
+                    พร้อมบ้านพักให้บริการสำหรับผู้ที่จะพักค้างคืน
+                  </p>
+                  <button
+                    class="btn btn-primary btn-xl text-uppercase"
+                    data-bs-dismiss="modal"
+                    type="button"
+                  >
+                    <i class="fas fa-xmark me-1"></i>
+                    ปิดหน้าต่าง
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- box item 7 modal popup-->
+    <div
+      class="box-modal modal fade"
+      id="boxModal7"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-bs-dismiss="modal">
+            <img src="static/img/close-icon.svg" alt="Close modal" />
+          </div>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="modal-body">
+                  <!-- Project details-->
+                  <h2 class="text-uppercase">น้ำตกวังตะไคร้</h2>
+                  <p class="item-intro text-muted">
+                    222 หมู่1 ต.สาริกา อ.เมือง จ.นครนายก
+                  </p>
+                  <img
+                    class="img-fluid d-block mx-auto"
+                    src="static/img/travel/7.jpg"
+                    alt="..."
+                  />
+                  <p>
+                    น้ำตกวังตะไคร้ เป็นวังน้ำกว้างมีต้นตะไคร้หางนาค
+                    หรือที่เรียกว่า "ต้นตะไคร้น้ำ" ขึ้นเต็มริมฝั่งห้วย
+                    วังตะไคร้แวดล้อมไปด้วยต้นไม้ใหญ่และพรรณไม้นานาชนิด
+                    รวมถึงสวนไม้ดอกไม้ประดับ อีกทั้งยังโอบล้อมด้วยภูเขา มีธารน้ำ
+                    2 สาย ซึ่งมีต้นน้ำมาจากน้ำตกแม่ปล้องและ
+                    น้ำตกเหวกฐินไหลมาบรรจบกัน ณ
+                    ที่แห่งนี้จึงเหมาะแก่การท่องเที่ยวพักผ่อน
+                    ดื่มด่ำธรรมชาติและอากาศอันบริสุทธิ์
+                  </p>
+                  <button
+                    class="btn btn-primary btn-xl text-uppercase"
+                    data-bs-dismiss="modal"
+                    type="button"
+                  >
+                    <i class="fas fa-xmark me-1"></i>
+                    ปิดหน้าต่าง
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- box item 8 modal popup-->
+    <div
+      class="box-modal modal fade"
+      id="boxModal8"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-bs-dismiss="modal">
+            <img src="static/img/close-icon.svg" alt="Close modal" />
+          </div>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="modal-body">
+                  <!-- Project details-->
+                  <h2 class="text-uppercase">วัดมณีวงศ์</h2>
+                  <p class="item-intro text-muted">
+                    75 หมู่ที่2 บ้านหนองกระพ้อ ต.ดงละคร อ.เมืองนครนายก จ.นครนายก
+                  </p>
+                  <img
+                    class="img-fluid d-block mx-auto"
+                    src="static/img/travel/8.jpg"
+                    alt="..."
+                  />
+                  <p>
+                    วัดมณีวงศ์
+                    เป็นวัดเก่าแก่ที่พุทธศาสนิกชนเลื่อมใสศรัทธามากๆวัดนึง
+                    อยู่ที่ ต.ดงละคร จ.นครนายก ก่อตั้งขึ้นเมื่อปี พ.ศ. 2446
+                    แต่รีวิวนี้เราจะให้ดูภายในถ้ำพญานาคเพื่อที่ว่าเพื่อนๆจะได้เห็นหลายๆมุมภายในถ้ำพญานาคว่ามีความงดงาม
+                  </p>
+                  <button
+                    class="btn btn-primary btn-xl text-uppercase"
+                    data-bs-dismiss="modal"
+                    type="button"
+                  >
+                    <i class="fas fa-xmark me-1"></i>
+                    ปิดหน้าต่าง
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- box item 9 modal popup-->
+    <div
+      class="box-modal modal fade"
+      id="boxModal9"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-bs-dismiss="modal">
+            <img src="static/img/close-icon.svg" alt="Close modal" />
+          </div>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="modal-body">
+                  <!-- Project details-->
+                  <h2 class="text-uppercase">น้ำตกคลองมะเดื่อ</h2>
+                  <p class="item-intro text-muted">
+                    ถนนปากทางเข้าวังตะไคร้ ต.สาริกา อ.เมืองนครนายก จ.นครนายก
+                  </p>
+                  <img
+                    class="img-fluid d-block mx-auto"
+                    src="static/img/travel/9.jpg"
+                    alt="..."
+                  />
+                  <p>
+                    น้ำตกคลองมะเดื่อ เป็นบริเวณของน้ำตกที่เกิดจาก คลองมะเดื่อ
+                    ธารน้ำสายเล็กๆ ที่อยู่ในป่าเขาใหญ่ โดยบรรยากาศรอบๆ นั้น
+                    จะค่อนข้างเงียบสงบ และที่สำคัญยังเป็นต้นน้ำของ
+                    น้ำตกวังตะไคร้ อีกด้วยนะคะซึ่งน้ำตกคลองมะเดื่อนี้
+                    ก็ยังอยู่ไม่ไกลจากน้ำตกวังตะไคร้
+                  </p>
+                  <button
+                    class="btn btn-primary btn-xl text-uppercase"
+                    data-bs-dismiss="modal"
+                    type="button"
+                  >
+                    <i class="fas fa-xmark me-1"></i>
+                    ปิดหน้าต่าง
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- All Js -->
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <script src="static/js/script.js"></script>
+  </body>
+</html>
+
+<!--for getting the form download the code from download button-->
